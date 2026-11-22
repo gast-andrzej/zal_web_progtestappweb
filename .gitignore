@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.py[cod]
+db.sqlite3
+media/
+frontend/node_modules/
+frontend/coverage/
+frontend/.stryker-tmp/
+/.stryker-tmp/
+frontend/playwright-report/
+frontend/test-results/
+test-results/
+playwright-report/
+reports/
+static/vue/

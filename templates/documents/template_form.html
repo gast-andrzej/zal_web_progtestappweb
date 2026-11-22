@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Nowy szablon — Dokumenty firmowe{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">AUTOMATYZACJA</p><h1>Utwórz szablon</h1><p class="muted">Wstaw pola w formacie {% templatetag openvariable %} nazwa_pola {% templatetag closevariable %}.</p></div></div>
+<section class="panel form-panel"><form method="post" class="stack-form">{% csrf_token %}{{ form.as_p }}<div class="hint"><strong>Dostępne pola:</strong> company_name, company_address, company_tax_id, company_email, company_phone, client_name, client_address, client_tax_id, client_email, client_phone, document_number, document_date, title. Inne pola pojawią się jako dodatkowe pola formularza.</div><div class="form-actions"><a class="button secondary" href="{% url 'template_list' %}">Anuluj</a><button class="button primary" type="submit">Zapisz szablon</button></div></form></section>
+{% endblock %}

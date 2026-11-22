@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Szablony — Dokumenty firmowe{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">AUTOMATYZACJA</p><h1>Szablony dokumentów</h1><p class="muted">Zdefiniuj treść umów, ofert i faktur z polami do uzupełnienia.</p></div><a class="button primary" href="{% url 'template_create' %}">+ Dodaj szablon</a></div>
+<section class="panel">{% if templates %}<div class="table-wrap"><table><thead><tr><th>Nazwa</th><th>Rodzaj</th><th>Status</th><th></th></tr></thead><tbody>{% for template in templates %}<tr><td>{{ template.name }}</td><td>{{ template.get_document_type_display }}</td><td><span class="badge {% if template.is_active %}active{% else %}inactive{% endif %}">{% if template.is_active %}Aktywny{% else %}Nieaktywny{% endif %}</span></td><td>{% if template.is_active %}<a href="{% url 'document_generate' %}?template={{ template.pk }}">Generuj →</a>{% endif %}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state"><h3>Brak szablonów</h3><p>Utwórz pierwszy szablon, aby zacząć generować dokumenty.</p></div>{% endif %}</section>
+{% endblock %}

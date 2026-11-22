@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Generuj dokument — Dokumenty firmowe{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">NOWY DOKUMENT</p><h1>Generuj dokument</h1><p class="muted">Wybierz szablon i klienta. Gotowy plik będzie dostępny jako DOCX i PDF.</p></div></div>
+<section class="panel form-panel">
+{% if not form.fields.template.queryset.exists %}<div class="empty-state"><h3>Brak aktywnych szablonów</h3><p>Najpierw utwórz szablon dokumentu.</p><a class="button primary" href="{% url 'template_create' %}">Dodaj szablon</a></div>
+{% elif not form.fields.client.queryset.exists %}<div class="empty-state"><h3>Brak klientów</h3><p>Dodaj klienta przed wygenerowaniem dokumentu.</p><a class="button primary" href="{% url 'client_create' %}">Dodaj klienta</a></div>
+{% else %}
+<form method="post" class="stack-form">{% csrf_token %}
+{% if selected_template %}<div class="selected-template"><span>Wybrany szablon</span><strong>{{ selected_template.name }}</strong><a href="{% url 'document_generate' %}">Zmień</a></div>{% endif %}
+{{ form.as_p }}<div class="form-actions"><a class="button secondary" href="{% url 'dashboard' %}">Anuluj</a><button class="button primary" type="submit">Wygeneruj DOCX i PDF</button></div>
+</form>
+{% endif %}
+</section>
+{% endblock %}

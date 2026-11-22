@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Logowanie — Dokumenty firmowe{% endblock %}
+{% block content %}
+<section class="login-card">
+  <p class="eyebrow">PANEL FIRMOWY</p>
+  <h1>Zaloguj się</h1>
+  <p class="muted">Zaloguj się, aby zarządzać dokumentami i klientami.</p>
+  <form method="post" class="stack-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if form.errors %}<p class="error">Nieprawidłowa nazwa użytkownika lub hasło.</p>{% endif %}
+    <button class="button primary" type="submit">Zaloguj</button>
+  </form>
+</section>
+{% endblock %}

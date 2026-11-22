@@ -1,0 +1,30 @@
+{
+  "name": "dokumenty-firmowe-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test --config e2e/playwright.config.js",
+    "test:mutation": "node scripts/run-mutation.js"
+  },
+  "dependencies": {
+    "vue": "^3.5.13"
+  },
+  "overrides": {
+    "qs": "^6.16.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.51.0",
+    "@stryker-mutator/core": "^10.0.0",
+    "@stryker-mutator/vitest-runner": "^10.0.0",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/test-utils": "^2.4.6",
+    "jsdom": "^26.0.0",
+    "vite": "^6.2.0",
+    "vitest": "^4.1.12"
+  }
+}

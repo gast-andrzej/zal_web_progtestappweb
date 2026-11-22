@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Pulpit — Dokumenty firmowe{% endblock %}
+{% block content %}
+<div class="page-heading">
+  <div><p class="eyebrow">CENTRUM DOKUMENTÓW</p><h1>Dzień dobry, {{ request.user.first_name|default:request.user.username }}</h1><p class="muted">Generuj i porządkuj dokumenty swojej firmy.</p></div>
+  <a class="button primary" href="{% url 'document_generate' %}">+ Nowy dokument</a>
+</div>
+<section class="stats">
+  <article class="stat-card"><span>Wygenerowane dokumenty</span><strong>{{ document_count }}</strong></article>
+  <article class="stat-card"><span>Klienci</span><strong>{{ client_count }}</strong></article>
+  <article class="stat-card"><span>Aktywne szablony</span><strong>{{ template_count }}</strong></article>
+</section>
+<section class="panel">
+  <div class="section-heading"><div><h2>Ostatnie dokumenty</h2><p class="muted">Ostatnio utworzone pliki w archiwum.</p></div><a href="{% url 'document_list' %}">Zobacz wszystkie →</a></div>
+  {% if recent_documents %}
+  <div class="table-wrap"><table><thead><tr><th>Numer</th><th>Tytuł</th><th>Klient</th><th>Rodzaj</th><th>Data</th></tr></thead><tbody>
+  {% for document in recent_documents %}<tr><td><a href="{% url 'document_detail' document.pk %}">{{ document.document_number }}</a></td><td>{{ document.title }}</td><td>{{ document.client.name }}</td><td>{{ document.template.get_document_type_display }}</td><td>{{ document.created_at|date:"d.m.Y" }}</td></tr>{% endfor %}
+  </tbody></table></div>
+  {% else %}<div class="empty-state"><h3>Archiwum jest jeszcze puste</h3><p>Dodaj klienta i szablon, aby wygenerować pierwszy dokument.</p><a class="button primary" href="{% url 'document_generate' %}">Rozpocznij</a></div>{% endif %}
+</section>
+{% endblock %}

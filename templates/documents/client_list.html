@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Klienci — Dokumenty firmowe{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">BAZA KONTAKTÓW</p><h1>Klienci</h1><p class="muted">Dane klientów dostępne podczas generowania dokumentów.</p></div><a class="button primary" href="{% url 'client_create' %}">+ Dodaj klienta</a></div>
+<section class="panel">{% if clients %}<div class="table-wrap"><table><thead><tr><th>Nazwa</th><th>NIP</th><th>E-mail</th><th>Telefon</th></tr></thead><tbody>{% for client in clients %}<tr><td>{{ client.name }}</td><td>{{ client.tax_id|default:"—" }}</td><td>{{ client.email|default:"—" }}</td><td>{{ client.phone|default:"—" }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state"><h3>Brak klientów</h3><p>Dodaj dane klienta, żeby wykorzystać je w szablonach.</p></div>{% endif %}</section>
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Dokumenty — Dokumenty firmowe{% endblock %}
+{% block content %}
+<div class="page-heading"><div><p class="eyebrow">ARCHIWUM</p><h1>Wygenerowane dokumenty</h1><p class="muted">Historia utworzonych dokumentów i plików do pobrania.</p></div><a class="button primary" href="{% url 'document_generate' %}">+ Nowy dokument</a></div>
+<section class="panel">{% if documents %}<div class="table-wrap"><table><thead><tr><th>Numer</th><th>Tytuł</th><th>Klient</th><th>Rodzaj</th><th>Wygenerowano</th></tr></thead><tbody>{% for document in documents %}<tr><td><a href="{% url 'document_detail' document.pk %}">{{ document.document_number }}</a></td><td>{{ document.title }}</td><td>{{ document.client.name }}</td><td>{{ document.template.get_document_type_display }}</td><td>{{ document.created_at|date:"d.m.Y H:i" }}</td></tr>{% endfor %}</tbody></table></div>{% else %}<div class="empty-state"><h3>Nie wygenerowano jeszcze dokumentów</h3><p>Utwórz dokument, aby zobaczyć go w archiwum.</p></div>{% endif %}</section>
+{% endblock %}

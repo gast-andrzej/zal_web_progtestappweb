@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}{{ document.title }} — Dokumenty firmowe{% endblock %}
+{% block content %}
+<p><a href="{% url 'document_list' %}">← Wróć do dokumentów</a></p>
+<div class="page-heading"><div><p class="eyebrow">{{ document.document_number }} · {{ document.template.get_document_type_display }}</p><h1>{{ document.title }}</h1><p class="muted">{{ document.client.name }} · {{ document.created_at|date:"d.m.Y H:i" }}</p></div><div class="download-actions"><a class="button secondary" href="{% url 'document_download' document.pk 'docx' %}">Pobierz DOCX</a><a class="button primary" href="{% url 'document_download' document.pk 'pdf' %}">Pobierz PDF</a></div></div>
+<section class="panel"><h2>Podgląd treści</h2><pre class="document-preview">{{ document.content_snapshot }}</pre></section>
+{% endblock %}
