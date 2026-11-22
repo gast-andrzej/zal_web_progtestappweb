@@ -16,5 +16,10 @@ export default defineConfig({
     url: "http://127.0.0.1:8000/api/session/",
     reuseExistingServer: !process.env.CI,
     timeout: 60_000,
+    env: {
+      ...process.env,
+      DJANGO_DEBUG: "1",
+      DJANGO_SECRET_KEY: process.env.DJANGO_SECRET_KEY || "tests-only-key-not-for-deployment",
+    },
   },
 });
